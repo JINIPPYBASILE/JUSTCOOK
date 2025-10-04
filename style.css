@@ -22,7 +22,7 @@ body.dark-mode{--bg:#eae0bc;
     --glass: #ffffff;
     --green-one: #1a2302;
     --green-two: #031f17;
-        --green-one-change: #5e6b35;
+        --green-one-change: #414a22;
     --green-two-change: #0f4f3d;
     --card-bottom:#524a3a;
     --header: #5d6538;
@@ -188,7 +188,6 @@ body.dark-mode{--bg:#eae0bc;
         text-decoration:none;
         border-radius:20px;
         transition: all 0.3s ease;
-        transform:scale(1)
     }
     
     nav .link:hover {
@@ -199,5 +198,4 @@ body.dark-mode{--bg:#eae0bc;
         padding-left:7px;
         text-decoration:none;
         border-radius:20px;
-        transform:scale(1.2) !important;
     }
