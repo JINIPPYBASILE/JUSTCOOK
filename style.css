@@ -81,9 +81,11 @@ body.dark-mode{--bg:#eae0bc;
 
     .card{
         background:linear-gradient(180deg,var(--card), var(--card-bottom));
-        border-radius:12px;
-        padding:14px;
-        box-shadow:0 6px 24px rgba(2,6,23,0.6);}
+        border-radius:30px !important;
+        padding:40px;
+        box-shadow:0 6px 24px rgba(2,6,23,0.6);
+        margin-bottom:20px;
+    }
 
     label{
         display:block;
@@ -212,6 +214,8 @@ body.dark-mode{--bg:#eae0bc;
 
     .subheading {
         font-size:20px;
-        padding-left:20px;
+        margin-left:20px;
         color:var(--secondary-green)
     }
+
+    
