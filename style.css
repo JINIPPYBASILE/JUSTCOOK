@@ -6,6 +6,7 @@
     --green-one: #728143;
     --green-two: #063427;
     --card-bottom:#e0d4bd;
+    --header: #5e3a3a;
 
 }
 body.dark-mode{--bg:#eae0bc;
@@ -51,7 +52,7 @@ body.dark-mode{--bg:#eae0bc;
     }
 
     header nav {
-        background-color:#fff;
+        background-color:var(--header);
         padding:20px;
         
     }
