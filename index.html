@@ -1,130 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>JUSTCOOK.</title>
-<link rel="stylesheet" href="/style.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>JustCook — Pantry → Meal in seconds</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <div id="header"></div>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Justcook.</h1>
-        <p class="lead">Log ingredients (price + qty), find recipes, calculate cost-per-portion, track calories & unlock coupons.</p>
+  <!-- Top Hero -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="brand">
+        <div class="logo">JC</div>
+        <div class="brand-text">
+          <h1>JustCook</h1>
+          <p class="tag">Pantry → Meal in seconds</p>
+        </div>
       </div>
-    </header>
-
-    <div class="grid">
-      <section class="card" id="left">
-        <h3>1) Add / edit ingredient</h3>
-        <div style="margin-top:8px">
-          <label>Name</label>
-          <input id="ing-name" placeholder="e.g. chicken breast, carrot, milk" />
-        </div>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <div style="flex:1">
-            <label>Quantity (g or unit)</label>
-            <input id="ing-qty" placeholder="e.g. 500 (grams) or 6 (eggs)" />
-          </div>
-          <div style="width:130px">
-            <label>Unit</label>
-            <select id="ing-unit">
-              <option value="g">g</option>
-              <option value="unit">unit</option>
-              <option value="ml">ml</option>
-            </select>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <div style="flex:1">
-            <label>Price paid</label>
-            <input id="ing-price" placeholder="e.g. 4.79 (in your local currency)" />
-          </div>
-          <div style="width:120px">
-            <label>Currency</label>
-            <input id="currency" value="$" />
-          </div>
-        </div>
-        <div style="margin-top:8px">
-          <label>Calories per 100g (or per unit if unit)</label>
-          <input id="ing-cals" placeholder="e.g. 165 (chicken per 100g)" />
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <button id="add-ing">Add / Update Ingredient</button>
-          <button id="clear-all" class="btn-ghost">Clear All</button>
-        </div>
-
-        <h3 style="margin-top:14px">Your ingredients</h3>
-        <div class="list card" id="ingredients-list"></div>
-
-        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)" />
-        <h3>Quick import sample</h3>
-        <p class="muted">Click to load demo pantry items.</p>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button id="load-sample" class="btn-ghost">Load sample</button>
-          <button id="export-csv" class="btn-ghost">Export CSV</button>
-        </div>
-
-      </section>
-
-      <section class="card" id="right">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <h3>2) Recipes & cost analysis</h3>
-            <p class="muted">What can you make with what's in your fridge? Cost & calories estimated per portion.</p>
-          </div>
-          <div style="text-align:right">
-            <div class="muted">Coupons: <span id="coupon-count">0</span></div>
-            <button id="redeem" class="btn-ghost" style="margin-top:6px">Redeem</button>
-          </div>
-        </div>
-
-        <div style="margin-top:12px">
-          <label>Search recipes or filter by max cost per portion</label>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <input id="recipe-search" placeholder="search e.g. pasta" />
-            <input id="max-cost" placeholder="max cost per portion" style="width:170px" />
-            <button id="find-recipes" class="btn-ghost">Find</button>
-          </div>
-        </div>
-
-        <div style="margin-top:12px">
-          <h4>Suggested recipes</h4>
-          <div class="recipes" id="recipes"></div>
-        </div>
-
-        <div style="margin-top:12px">
-          <h4>Manual meal log</h4>
-          <p class="muted">Select ingredients used and log the meal to track cost & calories and earn coupons.</p>
-          <div id="log-area"></div>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button id="log-meal">Log Meal</button>
-            <button id="estimate-meal" class="btn-ghost">Estimate Only</button>
-          </div>
-          <div id="log-result" style="margin-top:10px"></div>
-        </div>
-
-        <div style="margin-top:14px">
-          <h4>Comparison</h4>
-          <p class="muted">Compare per-portion cost to avg restaurant price for similar dishes.</p>
-          <div id="comparison" class="muted" style="margin-top:6px"></div>
-        </div>
-
-      </section>
+      <nav class="nav">
+        <a class="nav-link" href="#" id="open-pitch">Pitch</a>
+      </nav>
     </div>
 
-    <footer>
-      <div class="muted">This is a demo: calories and pricing are estimates. For higher accuracy, connect a food database, barcode scanner, or weight scale API. Want me to add those integrations?</div>
-    </footer>
-  </div>
-     <script src="js/frontend.js"></script> 
-   <script src="js/justcook.js"></script> 
+    <div class="container hero-copy">
+      <h2>Tell us what you have.<br><span class="accent">We’ll tell you what to cook.</span></h2>
+      <p class="muted">Built for students: quick, affordable recipes using what’s already in your kitchen.</p>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="container main">
+    <!-- Pantry -->
+    <section class="card glass">
+      <div class="section-title">
+        <h3>1) Your pantry</h3>
+        <p class="muted">Add ingredients or tap a suggestion. Remove with ×.</p>
+      </div>
+
+      <div class="row gap input-row">
+        <input id="ing-input" class="input" placeholder="Type an ingredient and press Enter (e.g., egg)"/>
+        <button id="ing-add" class="btn btn-primary">Add</button>
+        <button id="ing-clear" class="btn btn-ghost hide-mobile" hidden>Clear</button>
+      </div>
+
+      <div id="chips" class="chips"></div>
+
+      <div class="suggest">
+        <div class="muted small">Quick add</div>
+        <div id="suggested" class="chips"></div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="card glass">
+      <div class="section-title">
+        <h3>2) Filters</h3>
+        <p class="muted">Tune for time, budget, and diet.</p>
+      </div>
+      <div class="filters">
+        <div class="filter">
+          <label class="label">Max missing</label>
+          <input id="f-max-missing" type="range" min="0" max="5" value="2" class="range"/>
+          <div class="hint"><span id="f-max-missing-val">2</span> items</div>
+        </div>
+        <div class="filter">
+          <label class="label">Max time</label>
+          <select id="f-max-time" class="select">
+            <option>15</option><option>20</option><option selected>30</option><option>45</option><option>60</option>
+          </select>
+        </div>
+        <div class="filter">
+          <label class="label">Max cost / serving</label>
+          <select id="f-max-cost" class="select">
+            <option>$3</option><option>$5</option><option selected>$6</option><option>$8</option><option>$10</option>
+          </select>
+        </div>
+        <div class="filter">
+          <label class="label">Diet</label>
+          <select id="f-diet" class="select">
+            <option value="">Any</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="gluten free">Gluten-Free</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row gap actions">
+        <button id="do-search" class="btn btn-primary" disabled>JustCook it</button>
+        <span class="muted small">No API key? Mock recipes will appear for demo.</span>
+      </div>
+    </section>
+
+    <!-- Error -->
+    <div id="error" class="alert" hidden></div>
+
+    <!-- Results -->
+    <section class="results" id="results"></section>
+
+    <!-- Empty -->
+    <div id="empty" class="empty muted">
+      <p>Add a few ingredients and press <b>JustCook it</b>.</p>
+      <p class="small">Try <code>egg, rice, onion</code> or <code>pasta, tomato, garlic</code>.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="muted small">
+        Built in 24 hours at a hackathon. Costs are estimates. <span class="badge">mock mode</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
