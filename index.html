@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FridgeChef — Cost-aware Fridge-to-Meal Helper</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>FridgeChef — cost-aware fridge → meal helper</h1>
+        <p class="lead">Log ingredients (price + qty), find recipes, calculate cost-per-portion, track calories & unlock coupons.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" id="left">
+        <h3>1) Add / edit ingredient</h3>
+        <div style="margin-top:8px">
+          <label>Name</label>
+          <input id="ing-name" placeholder="e.g. chicken breast, carrot, milk" />
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <div style="flex:1">
+            <label>Quantity (g or unit)</label>
+            <input id="ing-qty" placeholder="e.g. 500 (grams) or 6 (eggs)" />
+          </div>
+          <div style="width:130px">
+            <label>Unit</label>
+            <select id="ing-unit">
+              <option value="g">g</option>
+              <option value="unit">unit</option>
+              <option value="ml">ml</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <div style="flex:1">
+            <label>Price paid</label>
+            <input id="ing-price" placeholder="e.g. 4.79 (in your local currency)" />
+          </div>
+          <div style="width:120px">
+            <label>Currency</label>
+            <input id="currency" value="$" />
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <label>Calories per 100g (or per unit if unit)</label>
+          <input id="ing-cals" placeholder="e.g. 165 (chicken per 100g)" />
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button id="add-ing">Add / Update Ingredient</button>
+          <button id="clear-all" class="btn-ghost">Clear All</button>
+        </div>
+
+        <h3 style="margin-top:14px">Your ingredients</h3>
+        <div class="list card" id="ingredients-list"></div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)" />
+        <h3>Quick import sample</h3>
+        <p class="muted">Click to load demo pantry items.</p>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button id="load-sample" class="btn-ghost">Load sample</button>
+          <button id="export-csv" class="btn-ghost">Export CSV</button>
+        </div>
+
+      </section>
+
+      <section class="card" id="right">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <h3>2) Recipes & cost analysis</h3>
+            <p class="muted">What can you make with what's in your fridge? Cost & calories estimated per portion.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="muted">Coupons: <span id="coupon-count">0</span></div>
+            <button id="redeem" class="btn-ghost" style="margin-top:6px">Redeem</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Search recipes or filter by max cost per portion</label>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input id="recipe-search" placeholder="search e.g. pasta" />
+            <input id="max-cost" placeholder="max cost per portion" style="width:170px" />
+            <button id="find-recipes" class="btn-ghost">Find</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4>Suggested recipes</h4>
+          <div class="recipes" id="recipes"></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4>Manual meal log</h4>
+          <p class="muted">Select ingredients used and log the meal to track cost & calories and earn coupons.</p>
+          <div id="log-area"></div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="log-meal">Log Meal</button>
+            <button id="estimate-meal" class="btn-ghost">Estimate Only</button>
+          </div>
+          <div id="log-result" style="margin-top:10px"></div>
+        </div>
+
+        <div style="margin-top:14px">
+          <h4>Comparison</h4>
+          <p class="muted">Compare per-portion cost to avg restaurant price for similar dishes.</p>
+          <div id="comparison" class="muted" style="margin-top:6px"></div>
+        </div>
+
+      </section>
+    </div>
+
+    <footer>
+      <div class="muted">This is a demo: calories and pricing are estimates. For higher accuracy, connect a food database, barcode scanner, or weight scale API. Want me to add those integrations?</div>
+    </footer>
+  </div>
+   <script src="js/justcook.js"></script> 
+</body>
+</html>
