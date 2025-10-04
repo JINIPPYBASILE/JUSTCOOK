@@ -1,3 +1,5 @@
+/* for archival purposes */
+
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
 html, body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:#111; }
@@ -6,7 +8,6 @@ html, body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-sys
 .muted { color: #555; }
 .small { font-size: 12px; }
 .hidden { display: none; }
-.accent { color: #059669; }
 
 .topbar { position: sticky; top: 0; background: rgba(255,255,255,.9); border-bottom: 1px solid #eee; backdrop-filter: blur(6px); }
 .topbar-inner { display:flex; align-items:center; justify-content:space-between; padding: 10px 0; }

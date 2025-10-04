@@ -10,6 +10,7 @@
     --green-two: #063427;
     --green-one-change: #5e6b35;
     --green-two-change: #0f4f3d;
+    --secondary-green: #a4b087;
     --card-bottom:#e0d4bd;
     --header: #d8dfba;
     --nav-brand: #9ba96c;
@@ -24,6 +25,7 @@ body.dark-mode{--bg:#eae0bc;
     --green-two: #031f17;
         --green-one-change: #414a22;
     --green-two-change: #0f4f3d;
+    --secondary-green: #88946e;
     --card-bottom:#524a3a;
     --header: #5d6538;
     --nav-brand: #fff;
@@ -179,7 +181,7 @@ body.dark-mode{--bg:#eae0bc;
     
     }
 
-    nav .link {
+    .link {
         background-color:var(--green-one);
         color:var(--bg);
         padding:5px;
@@ -190,7 +192,7 @@ body.dark-mode{--bg:#eae0bc;
         transition: all 0.3s ease;
     }
     
-    nav .link:hover {
+    .link:hover {
         background-color:var(--green-one-change);
         color:var(--bg);
         padding:5px;
@@ -198,4 +200,18 @@ body.dark-mode{--bg:#eae0bc;
         padding-left:7px;
         text-decoration:none;
         border-radius:20px;
+        font-weight:bold;
+        transform:scale(2)
+    }
+
+    .themetoggle {
+        position:absolute;
+        top:10px;
+        right:10px;
+    }
+
+    .subheading {
+        font-size:20px;
+        padding-left:20px;
+        color:var(--secondary-green)
     }
