@@ -6,14 +6,15 @@
     --muted:#684913;
     --accent:#bc8c7d;
     --glass: #ffffff;
-    --green-one: #728143;
+    --green-one: #6d8642;
     --green-two: #063427;
-    --green-one-change: #5e6b35;
+    --green-one-change: #4f563a;
     --green-two-change: #0f4f3d;
     --secondary-green: #a4b087;
     --card-bottom:#e0d4bd;
-    --header: #d8dfba;
-    --nav-brand: #9ba96c;
+    --header: #e6e4d9;
+    --nav-brand: #958e63;
+    --heading: #000;
 
 }
 body.dark-mode{--bg:#eae0bc;
@@ -29,6 +30,7 @@ body.dark-mode{--bg:#eae0bc;
     --card-bottom:#524a3a;
     --header: #5d6538;
     --nav-brand: #fff;
+    --heading:#fff;
 
 }
 
