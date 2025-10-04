@@ -378,7 +378,7 @@
         img.src = r.image;
 
         const body = document.createElement("div");
-        body.className = "card-body";
+        body.className = "card-body ";
         body.innerHTML = `
           <h4 class="card-title">${escapeHtml(r.title)}</h4>
           <div class="meta-row">
