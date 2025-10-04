@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JustCook — Pantry → Meal in seconds</title>
+  <meta name="theme-color" content="#2E7D32" />
+
+  <!-- Inline favicon so it runs locally -->
+  <link rel="icon" href='data:image/svg+xml;utf8,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="12" fill="%232E7D32"/>
+      <g transform="translate(6 9)">
+        <path d="M18 12h20a8 8 0 0 1 8 8v6a8 8 0 0 1-8 8H20a10 10 0 0 1-2-.2 10 10 0 0 1-8-9.8V20a8 8 0 0 1 8-8z" fill="%23ffffff"/>
+        <path d="M44 28l6 0" stroke="%23ffffff" stroke-width="4" stroke-linecap="round"/>
+        <path d="M22 4c7 0 10 3 12 6H10c2-3 5-6 12-6z" fill="%23A5D6A7"/>
+        <path d="M30 2c0 0 2 3 2 6" stroke="%23FF8A00" stroke-width="3" stroke-linecap="round"/>
+        <path d="M36 2c0 0 2 3 2 6" stroke="%23FF8A00" stroke-width="3" stroke-linecap="round"/>
+      </g>
+    </svg>' />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ====== HEADER / HERO ====== -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="brand">
+        <svg aria-hidden="true" class="brand-mark" viewBox="0 0 64 64">
+          <rect rx="12" width="64" height="64" class="mark-bg"/>
+          <g transform="translate(6 9)">
+            <path class="pan" d="M18 12h20a8 8 0 0 1 8 8v6a8 8 0 0 1-8 8H20a10 10 0 0 1-2-.2 10 10 0 0 1-8-9.8V20a8 8 0 0 1 8-8z"/>
+            <path class="handle" d="M44 28l6 0" stroke-width="4" stroke-linecap="round"/>
+            <path class="lid" d="M22 4c7 0 10 3 12 6H10c2-3 5-6 12-6z"/>
+            <path class="steam" d="M30 2c0 0 2 3 2 6" stroke-width="3" stroke-linecap="round"/>
+            <path class="steam" d="M36 2c0 0 2 3 2 6" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <div class="brand-text">
+          <h1><span class="just">Just</span><span class="cook">Cook</span></h1>
+          <p class="tag">Pantry → Meal in seconds</p>
+        </div>
+      </div>
+      <nav class="hero-actions">
+        <button id="btnDark" class="btn btn-ghost" aria-pressed="false">Toggle theme</button>
+        <a class="link-btn" href="#recipes">See recipes</a>
+      </nav>
+    </div>
+    <div class="container hero-copy">
+      <h2>Tell us what you have.<br><span class="accent">We’ll tell you what to cook.</span></h2>
+      <p class="muted">Fast, affordable recipes from your pantry — with clear calories and macros per serving.</p>
+    </div>
+  </header>
+
+  <!-- ====== PANTRY INPUT ====== -->
+  <main class="container">
+    <section class="card" aria-labelledby="pantryTitle">
+      <div class="section-header">
+        <h3 id="pantryTitle">Your pantry</h3>
+        <div class="meta">
+          <span class="pill">Tip: press Enter to add</span>
+          <button id="ing-clear" class="btn btn-ghost small" aria-label="Clear pantry" hidden>Clear</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <input id="ing-input" class="input" aria-label="Ingredient" placeholder="Type an ingredient (e.g., chicken, rice, spinach)" />
+        <button id="ing-add" class="btn btn-primary" aria-label="Add ingredient">Add</button>
+      </div>
+
+      <!-- Quick Add -->
+      <div class="quickadd">
+        <span class="qa-label">Quick add:</span>
+        <div id="qa-grid" class="qa-grid"></div>
+      </div>
+
+      <div id="chips" class="chips" aria-live="polite"></div>
+      <p class="muted small privacy">Ingredients are saved locally in your browser — not uploaded.</p>
+    </section>
+
+    <!-- ====== FILTERS ====== -->
+    <section class="filters">
+      <div class="card">
+        <div class="section-header">
+          <h3>Filters</h3>
+          <span class="pill">optional</span>
+        </div>
+        <div class="filters-grid">
+          <label class="filter">
+            <span>Max time (min)</span>
+            <input id="f-time" type="range" min="10" max="90" value="45" class="range" />
+            <div class="range-value"><span id="f-time-v">45</span>m</div>
+          </label>
+
+          <label class="filter">
+            <span>Diet</span>
+            <select id="f-diet" class="select">
+              <option value="">Any</option>
+              <option>Vegetarian</option>
+              <option>Vegan</option>
+              <option>Gluten-free</option>
+              <option>High-protein</option>
+            </select>
+          </label>
+
+          <label class="filter">
+            <span>Max missing items</span>
+            <select id="f-miss" class="select">
+              <option value="2">≤ 2</option>
+              <option value="1">≤ 1</option>
+              <option value="0">All in pantry</option>
+            </select>
+          </label>
+
+          <div class="filter">
+            <span>&nbsp;</span>
+            <button id="btnFind" class="btn btn-primary">JustCook it</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== RESULTS ====== -->
+    <section id="recipes" class="results card">
+      <div class="section-header">
+        <h3>Recipes for you</h3>
+        <div class="meta">
+          <span id="count" class="pill">0 results</span>
+        </div>
+      </div>
+
+      <div id="empty" class="empty">
+        <p>Tell us what's in your kitchen and hit <b>JustCook it</b>.</p>
+        <p class="small muted">Try <code>egg, rice, onion</code> or <code>pasta, tomato, garlic</code>.</p>
+      </div>
+
+      <div id="grid" class="recipe-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container foot-inner">
+      <div class="foot-left">
+        <span class="badge">Demo</span>
+        <span class="muted">This prototype runs fully in your browser.</span>
+      </div>
+      <div class="foot-right">
+        <a class="link-btn" href="#" id="resetEverything">Reset</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="justcook.js"></script>
+</body>
+</html>
