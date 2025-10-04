@@ -315,3 +315,6 @@ document.getElementById('redeem').addEventListener('click', redeemCoupons);
 // initial render
 renderPantry(); findRecipes();
 
+
+console.log("Hello");
+
