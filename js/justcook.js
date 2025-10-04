@@ -2,13 +2,13 @@
 const COMMON_INGREDIENTS = ["egg","cheese","bread","rice","chicken","pasta","tomato","onion","garlic","spinach","tuna","potato","milk","yogurt","beans"];
 
 const MOCK_RECIPES = [
-  { id:1001, title:"5-Minute Egg Fried Rice", image:"https://images.unsplash.com/photo-1604908554027-6a49c06e3c37?q=80&w=1280&auto=format&fit=crop",
+  { id:1001, title:"5-Minute Egg Fried Rice",
     usedIngredientCount:3, missedIngredientCount:1,
     usedIngredients:[{name:"rice"},{name:"egg"},{name:"onion"}], missedIngredients:[{name:"soy sauce"}] },
-  { id:1002, title:"Creamy Tomato Pasta", image:"https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1280&auto=format&fit=crop",
+  { id:1002, title:"Creamy Tomato Pasta",
     usedIngredientCount:3, missedIngredientCount:1,
     usedIngredients:[{name:"pasta"},{name:"tomato"},{name:"garlic"}], missedIngredients:[{name:"cream"}] },
-  { id:1003, title:"Tuna Melt Toastie", image:"https://images.unsplash.com/photo-1546549039-49f8f0898064?q=80&w=1280&auto=format&fit=crop",
+  { id:1003, title:"Tuna Melt Toastie",
     usedIngredientCount:3, missedIngredientCount:0,
     usedIngredients:[{name:"tuna"},{name:"cheese"},{name:"bread"}], missedIngredients:[] },
 ];
