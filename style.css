@@ -376,3 +376,23 @@ body.dark-mode{--bg:#eae0bc;
     .navbar-info {
         margin-left:-30px
     }
+
+    /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--caption);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-hover);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
