@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JustCook API</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const allRecipes = [
+        ...(JSON.parse(localStorage.getItem("justcook.customRecipes") || "[]")),
+        ...(JSON.parse(localStorage.getItem("justcook.defaultRecipes") || "[]"))
+      ];
+
+      // Extract URL param (like ?name=banana-smoothie)
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name");
+
+      let output;
+      if (name) {
+        const recipe = allRecipes.find(r => 
+          r.title.toLowerCase().replace(/\s+/g, "-") === name.toLowerCase()
+        );
+        if (recipe) output = recipe;
+        else output = { error: "Recipe not found." };
+      } else {
+        // Default: return all recipes in index format
+        output = {
+          count: allRecipes.length,
+          results: allRecipes.map(r => ({
+            id: r.id,
+            name: r.title,
+            url: `${location.origin}/api.html?name=${r.title.toLowerCase().replace(/\s+/g, "-")}`
+          }))
+        };
+      }
+
+      document.body.textContent = JSON.stringify(output, null, 2);
+    });
+  </script>
+</head>
+<body style="white-space: pre; font-family: monospace;"></body>
+</html>

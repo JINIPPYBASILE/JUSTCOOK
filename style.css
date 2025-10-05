@@ -3,7 +3,7 @@
 
 :root{--bg:#eae0bc;
     --card:#dadbbb;
-    --muted:#684913;
+    --muted:#bf9e66;
     --accent:#bc8c7d;
     --glass: #ffffff;
     --green-one: #6d8642;
@@ -24,8 +24,8 @@
 }
 body.dark-mode{--bg:#eae0bc;
     --card:#3f3f35;
-    --muted:#c3b49b;
-    --accent:#7d4d3f;
+    --muted:#aa9d85;
+    --accent:#7a5e56;
     --glass: #ffffff;
     --green-one: #1a2302;
     --green-two: #031f17;
@@ -50,6 +50,13 @@ body.dark-mode{--bg:#eae0bc;
     background-color:var(--caption)!important
 }
 
+.subheading-heading {
+    opacity:0.75
+}
+
+.welcome-message {
+    color:var(--secondary-navbar)
+}
     *{
         box-sizing:border-box
     }
@@ -83,7 +90,21 @@ body.dark-mode{--bg:#eae0bc;
         background:linear-gradient(180deg, var(--green-one) 0%, var(--green-two) 60%);
         background-size:cover;
         font-family:"comfortaa" !important;
+
     }
+.nav-buttons {
+    background-color:var(--muted) !important;
+    color:var(--header);
+    margin-left:10px;
+    padding:7.5px;
+    border-radius:20px;
+    text-decoration:none;
+    transition: all 0.3s ease;
+}
+
+.nav-buttons:hover {
+    background-color:var(--nav-brand) !important;
+}
 .qa {
     transition: all 0.3s ease;
 }
