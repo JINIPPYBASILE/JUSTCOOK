@@ -1,5 +1,5 @@
-# JUSTCOOK - HelloHacks 2025 Submission made by Verne, Aashir, Nicky, Alexis
-
+# JUSTCOOK
+<sub>- HelloHacks 2025 Submission made by Verne, Aashir, Nicky, Alexis</sub>
 _Students often struggle to balance health, cost, and time when cooking. We wanted to make it easier to eat well on a student budget — using what’s already in your fridge. Cooking is hard enough as it is, why not make the planning part easier?_
 
 ### What is Justcook?
