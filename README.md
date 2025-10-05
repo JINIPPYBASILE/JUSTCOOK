@@ -6,5 +6,8 @@ JustCook generates recipes from ingredients you have, calculating calories, prot
 
 The heart of JustCook is built using **HTML**, **CSS**, and **Vanilla Javascript** with data stored via **localStorage**. The app uses modular design, recipe generation logic, and and even a mock API to serve recipe data as JSON.
 
+### Check it out!
+Justcook is open source, check out our source files above. You can also see a live preview of our site and services [here](https://justcook-theta.vercel.app/)!
+
 ### What's next for JustCook
 We plan to integrate real nutrition APIs, the choice to share recipes with others, and AI-powered recipe generation later on. Our goal is to build a community of students sharing healthy, affordable meals — making cooking empowering instead of stressful.
