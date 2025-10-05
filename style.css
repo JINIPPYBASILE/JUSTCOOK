@@ -19,6 +19,7 @@
     --standard-text: #282424;
     --primary-hover: #478e39;
      --qa-hover: #f1f3e7;
+     --secondary-navbar: #f4f7ed;
 
 }
 body.dark-mode{--bg:#eae0bc;
@@ -39,6 +40,7 @@ body.dark-mode{--bg:#eae0bc;
     --standard-text:#dee7dc;
     --primary-hover: #586d8b;
     --qa-hover: #1f210f;
+      --secondary-navbar: #a6a791;
 }
 
 .caption {
@@ -51,6 +53,29 @@ body.dark-mode{--bg:#eae0bc;
     *{
         box-sizing:border-box
     }
+
+@keyframes fadein {
+  0% {opacity:0;}
+  100% {opacity: 1}
+}
+
+@keyframes stretch {
+  0% {height:0px !important;}
+  100% {height:auto !important;}
+}
+
+.container {
+    animation-name: fadein;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+}
+
+.container .section {
+    animation-name: stretch;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+}
+/* The element to apply the animation to */
 
     html,body{
         margin:0;
@@ -65,8 +90,15 @@ body.dark-mode{--bg:#eae0bc;
 .qa:hover {
     background-color:var(--qa-hover);
 }
+
+.btn-primary {
+    box-shadow:4px 4px #002411;
+    transition: all 0.3s ease;
+}
     .btn-primary:hover {
-        background-color:var(--primary-hover)
+        background-color:var(--primary-hover);
+        transform:translateX(3px) translateY(3px);
+         box-shadow:2px 2px  #002411;
     }
 
     .wrap{
@@ -89,9 +121,22 @@ body.dark-mode{--bg:#eae0bc;
     header nav {
         background-color:var(--header);
         padding:20px;
+        padding-top:10px;
         
     }
 
+    .navbar-buttons {
+        background-color:var(--secondary-navbar);
+        margin-bottom:20px;
+        padding:3px;
+    }
+
+    .navbar-buttons .btn {
+        padding:2px;
+        padding-left:7.5px;
+        padding-right:7.5px;
+
+    }
     h1{margin:0;
         font-size:20px}
 
@@ -159,6 +204,10 @@ body.dark-mode{--bg:#eae0bc;
         overflow:auto
     }
     
+    .float-right {
+        margin-top:calc(0.1vw + -15px);
+        margin-left:60px;
+    }
     .item{
         display:flex;
         justify-content:space-between;
@@ -169,6 +218,33 @@ body.dark-mode{--bg:#eae0bc;
         align-items:center
     }
 
+ .card-recipe{
+    transition: all 0.3s ease-in-out;
+}   
+#fav-grid .card-recipe {
+  width: 100%;
+}
+
+#cr-ingredients label {
+  background: #f5f5f5;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+#cr-ingredients input {
+  margin-right: 4px;
+}
+
+#fav-grid .card-recipe .fave-recipe-image{
+  height:50px
+}
+.card-recipe:hover {
+    transform: translateY(-7px);
+    filter:drop-shadow(0px 2px 6px #6c803b)
+}
     .muted{
         color:var(--muted);
         font-size:13px
@@ -202,7 +278,7 @@ body.dark-mode{--bg:#eae0bc;
     .nav-brand {
         color:var(--nav-brand) !important;
         font-weight:900;
-        font-size:45px;
+        font-size:35px;
         text-decoration:none;
     
     }

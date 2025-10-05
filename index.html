@@ -43,6 +43,53 @@
       <div id="chips" class="chips" aria-live="polite"></div>
      
     </section>
+    <section id="custom-recipe" class="card">
+  <div class="section-header">
+    <h3>Create Your Own Recipe</h3>
+  </div>
+
+  <form id="custom-form">
+    <div class="mb-3">
+      <label for="cr-title" class="form-label">Recipe Name</label>
+      <input id="cr-title" type="text" class="form-control" placeholder="e.g., My Protein Smoothie" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Select Ingredients from Pantry</label>
+      <div id="cr-ingredients" class="chips"></div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <label for="cr-kcal" class="form-label">Calories</label>
+        <input id="cr-kcal" type="number" class="form-control" placeholder="e.g., 450" />
+      </div>
+      <div class="col">
+        <label for="cr-weight" class="form-label">Portion Weight (g)</label>
+        <input id="cr-weight" type="number" class="form-control" placeholder="e.g., 300" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="cr-diet" class="form-label">Dietary Restrictions</label>
+      <select id="cr-diet" class="form-select">
+        <option value="">None</option>
+        <option>Vegetarian</option>
+        <option>Vegan</option>
+        <option>Gluten-free</option>
+        <option>High-protein</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="cr-steps" class="form-label">Preparation Steps</label>
+      <textarea id="cr-steps" class="form-control" rows="4" placeholder="Write each step on a new line..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Recipe</button>
+  </form>
+</section>
+    
 
     <!-- ====== FILTERS ====== -->
     <section class="filters">
@@ -85,6 +132,16 @@
         </div>
       </div>
     </section>
+    <section id="favourites" class="results card">
+  <div class="section-header">
+    <h3>Your favourite Recipes</h3>
+    <div class="meta">
+      <span id="fav-count" class="pill">0</span>
+    </div>
+  </div>
+
+  <div id="fav-grid" class="recipe-grid"></div>
+</section>
 
     <!-- ====== RESULTS ====== -->
     <section id="recipes" class="results card">
@@ -117,7 +174,6 @@
     </div>
   </footer>
 
-  <script src="/js/justcook.js"></script>
    <script src="/just cook/justcook.js"></script>
     <script src="/js/frontend.js"></script>
 </body>

@@ -39,7 +39,8 @@
 
     // ------- State -------
     let pantry = loadPantry(); // array of strings
-
+    let customRecipes = JSON.parse(localStorage.getItem("justcook.customRecipes") || "[]");
+let favourites = JSON.parse(localStorage.getItem("justcook.favourites") || "[]");
     // ------- Quick Add (optional if container exists) -------
     const QUICK_ADD = [
       "egg","milk","bread","butter","cheese","yogurt",
@@ -362,7 +363,8 @@
 
     // ------- Render results -------
     function renderResults(){
-      const list = applyFilters(RECIPES);
+      const allRecipes = [...RECIPES, ...customRecipes];
+const list = applyFilters(allRecipes);
 
       elCount.textContent = `${list.length} result${list.length!==1?"s":""}`;
       elGrid.innerHTML = "";
@@ -433,13 +435,107 @@
           alert(`Nice choice! "${r.title}"\n${r.macros.kcal} kcal • ${r.macros.protein}g protein per serving.`);
         });
 
-        actions.append(btnCook, btnSteps);
-        body.append(ingWrap, actions, steps);
+      const btnFav = document.createElement("button");
+btnFav.className = "btn btn-ghost btn-star";
+btnFav.innerHTML = favourites.includes(r.id) ? "⭐" : "☆";
+btnFav.title = favourites.includes(r.id) ? "Remove from favourites" : "Add to favourites";
+btnFav.addEventListener("click", () => {
+  if (favourites.includes(r.id)) {
+    favourites = favourites.filter(f => f !== r.id);
+  } else {
+    favourites.push(r.id);
+  }
+  localStorage.setItem("justcook.favourites", JSON.stringify(favourites));
+  renderResults(); // refresh stars
+  renderFavouritesList(); // refresh favourites section
+});
+
+actions.prepend(btnFav);
+actions.append(btnCook, btnSteps);
+body.append(ingWrap, actions, steps);
 
         card.append(img, body);
         elGrid.appendChild(card);
       });
     }
+    const elCrForm = byId("custom-form");
+const elCrIngredients = byId("cr-ingredients");
+
+if (elCrForm) {
+  // Render pantry items as selectable ingredients
+  renderCrIngredients();
+
+  // Handle submission
+  elCrForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = byId("cr-title").value.trim();
+    const steps = byId("cr-steps").value
+      .split("\n")
+      .map(s => s.trim())
+      .filter(Boolean);
+    const kcal = parseInt(byId("cr-kcal").value) || 0;
+    const weight = parseInt(byId("cr-weight").value) || 0;
+    const diet = byId("cr-diet").value;
+    const selected = Array.from(elCrIngredients.querySelectorAll("input:checked"))
+                          .map(cb => cb.value);
+
+    if (!title || selected.length === 0) {
+      alert("Please provide a recipe name and select at least one ingredient.");
+      return;
+    }
+
+    const newRecipe = {
+      id: "user-" + Date.now(),
+      title,
+      time: 15, // default, you could add a time input later
+      diet: diet ? [diet] : [],
+      image: IMG_PLACEHOLDER,
+      macros: { kcal, protein: 0, carbs: 0, fat: 0, weight },
+      ingredients: selected.map(name => ({ name, qty: "to taste" })),
+      steps
+    };
+
+    customRecipes.push(newRecipe);
+    localStorage.setItem("justcook.customRecipes", JSON.stringify(customRecipes));
+
+    alert(`Recipe "${title}" added!`);
+    elCrForm.reset();
+    renderResults(); // update recipe list with new recipe
+  });
+}
+
+function renderCrIngredients() {
+  if (!elCrIngredients) return;
+  elCrIngredients.innerHTML = pantry.length
+    ? pantry.map(p =>
+        `<label class="me-2 mb-2"><input type="checkbox" value="${escapeHtml(p)}"> ${escapeHtml(p)}</label>`
+      ).join("")
+    : "<p class='muted'>No ingredients in pantry yet.</p>";
+}
+    function renderFavouritesList() {
+  const favGrid = byId("fav-grid");
+  const favCount = byId("fav-count");
+  if (!favGrid) return;
+
+  const favRecipes = RECIPES.filter(r => favourites.includes(r.id));
+  favCount.textContent = favRecipes.length;
+
+  if (favRecipes.length === 0) {
+    favGrid.innerHTML = "<p class='muted'>No favourites yet — click a star to add one!</p>";
+    return;
+  }
+
+  favGrid.innerHTML = favRecipes.map(r => `
+    <article class="card-recipe small">
+      <img src="${r.image}" alt="${escapeHtml(r.title)}"  class="fave-recipe-image" loading="lazy" />
+      <div class="card-body col-12">
+        <h4>${escapeHtml(r.title)}</h4>
+    
+      </div>
+    </article>
+  `).join("");
+}
 
     // ------- Events to refresh results -------
     elBtnFind.addEventListener("click", renderResults);
@@ -465,5 +561,6 @@
     // Initial render
     elTimeV.textContent = elTime.value;
     renderResults();
+renderFavouritesList();
   }
 })();
