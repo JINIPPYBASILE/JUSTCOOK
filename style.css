@@ -225,6 +225,10 @@ body.dark-mode{--bg:#eae0bc;
   width: 100%;
 }
 
+.cr-pantry {
+     width: 100%;
+}
+
 #cr-ingredients label {
   background: #f5f5f5;
   padding: 6px 10px;

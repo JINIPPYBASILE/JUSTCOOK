@@ -54,11 +54,13 @@
       <input id="cr-title" type="text" class="form-control" placeholder="e.g., My Protein Smoothie" required />
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">Select Ingredients from Pantry</label>
-      <div id="cr-ingredients" class="chips"></div>
-    </div>
-
+ <div class="mb-3">
+  <label for="cr-ing" class="form-label">Ingredients (separate with commas)</label>
+  <input id="cr-ing" type="text" class="form-control" placeholder="e.g., chicken, soy sauce, garlic" required />
+</div>
+<p class="small text-muted">
+  Pantry items: <span id="cr-pantry"></span>
+</p>
     <div class="row mb-3">
       <div class="col">
         <label for="cr-kcal" class="form-label">Calories</label>

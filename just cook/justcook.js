@@ -477,13 +477,16 @@ if (elCrForm) {
     const kcal = parseInt(byId("cr-kcal").value) || 0;
     const weight = parseInt(byId("cr-weight").value) || 0;
     const diet = byId("cr-diet").value;
-    const selected = Array.from(elCrIngredients.querySelectorAll("input:checked"))
-                          .map(cb => cb.value);
+   const rawIng = byId("cr-ing").value.trim();
+const selected = rawIng
+  .split(",")
+  .map(s => s.trim().toLowerCase())
+  .filter(Boolean);
 
-    if (!title || selected.length === 0) {
-      alert("Please provide a recipe name and select at least one ingredient.");
-      return;
-    }
+if (!title || selected.length === 0) {
+  alert("Please provide a recipe name and at least one ingredient (comma-separated).");
+  return;
+}
 
     const newRecipe = {
       id: "user-" + Date.now(),
@@ -513,6 +516,8 @@ function renderCrIngredients() {
       ).join("")
     : "<p class='muted'>No ingredients in pantry yet.</p>";
 }
+const elCrPantry = byId("cr-pantry");
+if (elCrPantry) elCrPantry.textContent = pantry.join(", ");
     function renderFavouritesList() {
   const favGrid = byId("fav-grid");
   const favCount = byId("fav-count");
