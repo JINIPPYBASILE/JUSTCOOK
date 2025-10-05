@@ -562,7 +562,9 @@ if (elCrPantry) elCrPantry.textContent = pantry.join(", ");
     function escapeHtml(s){
       return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
-
+if (!localStorage.getItem("justcook.defaultRecipes")) {
+  localStorage.setItem("justcook.defaultRecipes", JSON.stringify(RECIPES));
+}
     // Initial render
     elTimeV.textContent = elTime.value;
     renderResults();

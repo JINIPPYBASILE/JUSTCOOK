@@ -3,14 +3,14 @@
 
 :root{--bg:#eae0bc;
     --card:#dadbbb;
-    --muted:#bf9e66;
+    --muted:#b4996a;
     --accent:#bc8c7d;
     --glass: #ffffff;
     --green-one: #6d8642;
     --green-two: #063427;
     --green-one-change: #4f563a;
     --green-two-change: #0f4f3d;
-    --secondary-green: #a4b087;
+    --secondary-green: #7a8460;
     --card-bottom:#e0d4bd;
     --header: #e6e4d9;
     --nav-brand: #958e63;
@@ -20,20 +20,22 @@
     --primary-hover: #478e39;
      --qa-hover: #f1f3e7;
      --secondary-navbar: #f4f7ed;
+     --reverso: #503737;
+     --shadow: #526432;
 
 }
 body.dark-mode{--bg:#eae0bc;
-    --card:#3f3f35;
+    --card:#55553d;
     --muted:#aa9d85;
-    --accent:#7a5e56;
+    --accent:#826861;
     --glass: #ffffff;
     --green-one: #1a2302;
     --green-two: #031f17;
         --green-one-change: #414a22;
     --green-two-change: #0f4f3d;
-    --secondary-green: #88946e;
+    --secondary-green: #adbd8b;
     --card-bottom:#524a3a;
-    --header: #5d6538;
+    --header: #535c2f;
     --nav-brand: #fff;
     --heading:#fff;
     --caption:#384436;
@@ -41,7 +43,11 @@ body.dark-mode{--bg:#eae0bc;
     --primary-hover: #586d8b;
     --qa-hover: #1f210f;
       --secondary-navbar: #a6a791;
+       --reverso: #fff;
+       --shadow: #5b6a3b;
 }
+
+
 
 .caption {
    margin-top:-20px;
@@ -66,19 +72,25 @@ body.dark-mode{--bg:#eae0bc;
   100% {opacity: 1}
 }
 
-@keyframes stretch {
-  0% {height:0px !important;}
-  100% {height:auto !important;}
+@keyframes stretchout {
+  0% {transform:scale(0.5);opacity:0;}
+  100% {transform:scale(1);opacity:1}
 }
 
-.container {
-    animation-name: fadein;
+
+@keyframes headeranimation {
+  0% {opacity:0;}
+  100% {opacity:1}
+}
+
+
+.header-with-animation {
+     animation-name: headeranimation;
     animation-iteration-count: 1;
     animation-duration: 2s;
 }
-
-.container .section {
-    animation-name: stretch;
+.container {
+    animation-name: stretchout;
     animation-iteration-count: 1;
     animation-duration: 2s;
 }
@@ -100,10 +112,13 @@ body.dark-mode{--bg:#eae0bc;
     border-radius:20px;
     text-decoration:none;
     transition: all 0.3s ease;
+    border: 1px solid #ffffff00
 }
 
 .nav-buttons:hover {
-    background-color:var(--nav-brand) !important;
+    background-color:var(--accent) !important;
+    color:var(--reverso);
+    border: 1px solid var(--reverso)
 }
 .qa {
     transition: all 0.3s ease;
@@ -119,7 +134,7 @@ body.dark-mode{--bg:#eae0bc;
     .btn-primary:hover {
         background-color:var(--primary-hover);
         transform:translateX(3px) translateY(3px);
-         box-shadow:2px 2px  #002411;
+         box-shadow:2px 2px var(--shadow);
     }
 
     .wrap{
@@ -139,11 +154,19 @@ body.dark-mode{--bg:#eae0bc;
         background-color:#ffffff6a !important
     }
 
-    header nav {
+    header {
         background-color:var(--header);
+        
+        
+    }
+
+    nav {
+        background-image:url(/assets/logo-translucent.png );
+        background-position:left;
+        background-size:500px;
+        background-repeat: no-repeat;
         padding:20px;
         padding-top:10px;
-        
     }
 
     .navbar-buttons {
@@ -225,10 +248,6 @@ body.dark-mode{--bg:#eae0bc;
         overflow:auto
     }
     
-    .float-right {
-        margin-top:calc(0.1vw + -15px);
-        margin-left:60px;
-    }
     .item{
         display:flex;
         justify-content:space-between;
@@ -268,7 +287,7 @@ body.dark-mode{--bg:#eae0bc;
 }
 .card-recipe:hover {
     transform: translateY(-7px);
-    filter:drop-shadow(0px 2px 6px #6c803b)
+    filter:drop-shadow(0px 2px 6px var(--shadow))
 }
     .muted{
         color:var(--muted);
@@ -305,6 +324,7 @@ body.dark-mode{--bg:#eae0bc;
         font-weight:900;
         font-size:35px;
         text-decoration:none;
+        padding-bottom:50px !important;
     
     }
 
@@ -331,18 +351,28 @@ body.dark-mode{--bg:#eae0bc;
         transform:scale(2)
     }
 
-    .themetoggle {
+    .buttons-on-navbar{
         position:absolute;
         top:10px;
         right:10px;
     }
 
+    .themetoggle {
+        margin-left:10px;
+        padding:7.5px;
+    }
+
     .subheading {
-        font-size:20px;
-        margin-left:20px;
-        color:var(--secondary-green)
+        font-size:15px;
+        
+        color:var(--secondary-green);
+        margin-top:-30px !important;
     }
 
     .chip {
         background-color: var(--accent);
+    }
+
+    .navbar-info {
+        margin-left:-30px
     }
